@@ -40,19 +40,50 @@
           </div>
         );
       }
+      function ChatMessages() {
+        const chatMessages = [
+          {
+            message: "Hi Chatbot!",
+            sender: "user",
+            id: 1,
+          },
+          {
+            message: "Hey There!",
+            sender: "bot",
+            id: 2,
+          },
+          {
+            message: "Whats the date today?",
+            sender: "user",
+            id: 3,
+          },
+          {
+            message: "Today is 26 May",
+            sender: "bot",
+            id: 4,
+          },
+        ];
+        return (
+          <>
+            {chatMessages.map((msg) => {
+              return <ChatMessage key={msg.id} message={msg.message} sender={msg.sender} />;
+            })}
+          </>
+        );
+      }
 
-      const inp = (
-        <>
-          <h1>Chatbot</h1>
-          <ChatInput />
-          <ChatMessage message="Hi Chatbot!" sender="user" />
-          <ChatMessage message="Hey There!" sender="bot" />
-          <ChatMessage message="Whats the date today?" sender="user" />
-          <ChatMessage message="Today is 26 May" sender="bot" />
-        </>
-      );
+      function App() {
+        return (
+          <>
+            <h1>Chatbot</h1>
+            <ChatInput />
+            <ChatMessages/>
+          </>
+        );
+      }
+
       const container = document.querySelector(".navbar");
-      ReactDOM.createRoot(container).render(inp);
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
