@@ -41,7 +41,7 @@
         );
       }
       function ChatMessages() {
-        const chatMessages = [
+        const [chatMessages, setChatMessages] = React.useState([
           {
             message: "Hi Chatbot!",
             sender: "user",
@@ -61,8 +61,21 @@
             message: "Today is 26 May",
             sender: "bot",
             id: 4,
-          },
-        ];
+          }
+        ]);
+        //const chatMessages = array[0];
+        //const setChatMessages = array[1];
+       // const [chatMessages, setChatMessages] = array; 
+         function sendMessage(){
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: "This is a new message",
+              sender: "user",
+              id: crypto.randomUUID(),
+            },
+          ]);
+      };
         return (
           <>
             {chatMessages.map((msg) => {
@@ -70,17 +83,19 @@
             })}
           </>
         );
-      }
+      };
+     
 
       function App() {
         return (
           <>
+             <button onClick={sendMessage}>Send message</button>
             <h1>Chatbot</h1>
             <ChatInput />
             <ChatMessages/>
           </>
         );
-      }
+      };
 
       const container = document.querySelector(".navbar");
       ReactDOM.createRoot(container).render(<App />);
