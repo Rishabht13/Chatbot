@@ -47,11 +47,15 @@
         return (
           <>
             <div className="input-container">
-              <input type="text" placeholder="Type your message here..." value={inputValue} onChange={saveInput} onKeyDown={handleKeyDown} />
+              <input
+                type="text"
+                placeholder="Type your message here..."
+                value={inputValue}
+                onChange={saveInput}
+                onKeyDown={handleKeyDown}
+              />
 
-              <button onClick={send}>
-                Send
-              </button>
+              <button onClick={send}>Send</button>
             </div>
           </>
         );
@@ -96,12 +100,16 @@
         //const chatMessages = array[0];
         //const setChatMessages = array[1];
         // const [chatMessages, setChatMessages] = array;
+        const messagesEndRef = React.useRef(null);
+        React.useEffect(() => {
+          messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+        }, [chatMessages]);
         return (
           <>
             <div className="app-container">
               <h1>Chatbot</h1>
 
-              <div className="messages-container">
+              <div className="messages-container" ref={messagesEndRef}>
                 <ChatMessages chatMessages={chatMessages} />
               </div>
 

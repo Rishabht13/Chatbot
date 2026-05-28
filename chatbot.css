@@ -25,7 +25,8 @@ h1 {
 
 .messages-container {
   height: 400px;
-  overflow-y: auto;
+  overflow : scroll;
+  scrollbar-width: none;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 10px;
